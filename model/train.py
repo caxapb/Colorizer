@@ -22,5 +22,6 @@ if __name__ == "__main__":
     loss_fn = torch.nn.MSELoss()
     epochs = 10
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    model = model.to(device)
     print("start train")
     train(model, train_dataloader, val_dataloader, optimizer, loss_fn, epochs, device=device, plotting=True)
