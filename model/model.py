@@ -13,7 +13,7 @@ class PictureColorizer(torch.nn.Module):
         # self.conv4 = torch.nn.Conv2d(128, 256, 3, padding=1)
         # self.conv5 = torch.nn.Conv2d(256, 512, 3, padding=1)
         # self.conv6 = torch.nn.Conv2d(4, 3, 3, padding=1)
-        # self.norm = Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
+        self.norm = Normalize([0.5, 0.5, 0.5], [0.5, 0.5, 0.5])
 
         self.conv1 = nn.Conv2d(2, 32, kernel_size=3, padding=1)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, padding=1, stride=2)
@@ -36,7 +36,7 @@ class PictureColorizer(torch.nn.Module):
         self.batchnorm5 = nn.BatchNorm2d(64)
         
         self.conv8 = nn.Conv2d(64, 32, kernel_size=3, padding=1)
-        self.conv9 = nn.Conv2d(32, 2, kernel_size=3, padding='same')
+        self.conv9 = nn.Conv2d(32, 3, kernel_size=3, padding='same')
         self.batchnorm6 = nn.BatchNorm2d(2)
 
 
@@ -90,10 +90,10 @@ class PictureColorizer(torch.nn.Module):
         
         x = F.relu(self.conv8(x))
         
-        x = self.conv9(x)
-        x = self.batchnorm6(x)
-        x = torch.tanh(x)
-        
+        x = F.relu(self.conv9(x))
+        x = self.norm(x)
+        x = x - torch.min(x)
+        x = x/torch.max(x)
         return x
 
 
