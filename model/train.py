@@ -12,26 +12,26 @@ import os
 if __name__ == "__main__":
 
     # urls = get_urls()[:1_000]
-    # urls = get_urls()[:20]
+    # urls = get_urls()[:40]
 
     # train_urls, val_urls = train_test_split(urls, test_size=0.2)
     # val_dataset = PictureDataset(val_urls)
     # train_dataset = PictureDataset(train_urls)
 
     # path = os.path.dirname(__file__) + '/custom_datasets/'
-    # with open(path + 'val_dataset.pkl', "wb") as file:
+    # with open(path + 'val_dataset_40.pkl', "wb") as file:
     #     pickle.dump(val_dataset, file)
-    # with open(path + 'train_dataset.pkl', "wb") as file:
+    # with open(path + 'train_dataset_40.pkl', "wb") as file:
     #     pickle.dump(train_dataset, file)
     
 
     path = os.path.dirname(__file__) + '/custom_datasets/'
-    with open(path + 'val_dataset.pkl', 'rb') as file:
+    with open(path + 'val_dataset_40.pkl', 'rb') as file:
         val_dataset = pickle.load(file)
-    with open(path + 'train_dataset.pkl', 'rb') as file:
+    with open(path + 'train_dataset_40.pkl', 'rb') as file:
         train_dataset = pickle.load(file)
 
-    batch_size = 16
+    batch_size = 4
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 

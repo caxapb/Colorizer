@@ -94,9 +94,9 @@ def val_one_epoch(
 
     if visual_progress and epoch_num % 3 == 0:
         triplet = None
-        t1 = gray[0][1].squeeze()
-        t2 = colored[0].permute(1, 2, 0)
-        t3 = outputs[0].permute(1, 2, 0)
+        t1 = gray[0][1].squeeze().cpu()
+        t2 = colored[0].permute(1, 2, 0).cpu()
+        t3 = outputs[0].permute(1, 2, 0).cpu()
         triplet = (t1, t2, t3)
 
         fig, axes = plt.subplots(1, 3, figsize=(15, 5))
@@ -135,8 +135,8 @@ def train(
     losses_val = []
     for epoch in range(epochs):
         if plotting:
-            loss_train = train_one_epoch(model, train_dataloader, optimizer, loss_fn, epoch_num=epoch,device=device, plotting=True)
-            losses_train.append(loss_train)
+            # loss_train = train_one_epoch(model, train_dataloader, optimizer, loss_fn, epoch_num=epoch,device=device, plotting=True)
+            # losses_train.append(loss_train)
             best, loss_val = val_one_epoch(
                 model,
                 val_dataloader,
