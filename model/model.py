@@ -6,7 +6,7 @@ from torchvision.transforms import Normalize
 
 class PictureColorizer(torch.nn.Module):
     def __init__(self):
-        # super(PictureColorizer, self).__init__()
+        super(PictureColorizer, self).__init__()
         # self.conv1 = torch.nn.Conv2d(2, 4, 3, padding=1)
         # self.conv2 = torch.nn.Conv2d(4, 16, 3, padding=1)
         # self.conv3 = torch.nn.Conv2d(64, 128, 3, padding=1)
