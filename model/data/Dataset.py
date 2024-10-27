@@ -38,8 +38,8 @@ class PictureDataset(Dataset):
         # gray = gray.transpose(1, 2)
         # image = image.transpose(0, 2)
         # image = image.transpose(1, 2)
+        
         image = image/max(image)
-
         gray = gray/max(gray)
 
         return image, gray
