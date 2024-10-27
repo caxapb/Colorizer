@@ -12,16 +12,16 @@ import os
 if __name__ == "__main__":
 
     # urls = get_urls()[:1_000]
-    # urls = get_urls()[:40]
+    # # urls = get_urls()[:40]
 
     # train_urls, val_urls = train_test_split(urls, test_size=0.2)
     # val_dataset = PictureDataset(val_urls)
     # train_dataset = PictureDataset(train_urls)
 
     # path = os.path.dirname(__file__) + '/custom_datasets/'
-    # with open(path + 'val_dataset_40.pkl', "wb") as file:
+    # with open(path + 'val_dataset.pkl', "wb") as file:
     #     pickle.dump(val_dataset, file)
-    # with open(path + 'train_dataset_40.pkl', "wb") as file:
+    # with open(path + 'train_dataset.pkl', "wb") as file:
     #     pickle.dump(train_dataset, file)
     
 
@@ -39,7 +39,7 @@ if __name__ == "__main__":
     model = PictureColorizer().to(device)
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     loss_fn = torch.nn.MSELoss()
-    epochs = 10
+    epochs = 
     ckpt_path = os.path.dirname(os.path.dirname(__file__)) + '/models/best.pt'
     print("Start Train")
 
