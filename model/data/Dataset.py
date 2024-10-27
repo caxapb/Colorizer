@@ -30,15 +30,13 @@ class PictureDataset(Dataset):
         image = get_image(self.urls["url"][idx])
 
         gray = transform(image)
-        print(image.shape, gray.shape)
         image, gray = self.resize_transform(image), self.resize_transform(gray)
-        print(image.shape, gray.shape)
 
         # gray = gray.transpose(0, 2)
         # gray = gray.transpose(1, 2)
         # image = image.transpose(0, 2)
         # image = image.transpose(1, 2)
-        
+
         image = image/max(image)
         gray = gray/max(gray)
 
