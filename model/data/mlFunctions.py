@@ -47,6 +47,7 @@ def train_one_epoch(model, loader, optimizer, loss_fn, epoch_num=-1, device='cpu
         loop.set_postfix({"loss": float(loss)})
 
     if plotting:
+        print(float(train_loss) / (i+1))
         return float(train_loss) / (i+1)
     return
 
@@ -118,7 +119,7 @@ def val_one_epoch(
         dir = os.path.dirname(os.path.dirname(os.path.dirname(__file__))) + '/plots'
         filename = dir + '/visual_progress_epoch_' + str(epoch_num) + '.png'
         plt.savefig(filename)
-
+    print(float(val_loss) / (i+1))
     return best_so_far, float(val_loss) / (i+1)
 
 
