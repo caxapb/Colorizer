@@ -99,7 +99,7 @@ def val_one_epoch(
             torch.save(model.state_dict(), ckpt_path)
             best_so_far = loss
 
-    if visual_progress and epoch_num % 3 == 0:
+    if visual_progress and epoch_num % 2 == 0:
         triplet = None
         t1 = gray[0][1].squeeze().cpu()
         t2 = colored[0].permute(1, 2, 0).cpu()

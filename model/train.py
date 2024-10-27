@@ -39,7 +39,7 @@ if __name__ == "__main__":
     model = PictureColorizer().to(device)
     optimizer = optim.Adam(model.parameters(), lr=0.001)
     loss_fn = torch.nn.MSELoss()
-    epochs = 
+    epochs = 8
     ckpt_path = os.path.dirname(os.path.dirname(__file__)) + '/models/best.pt'
     print("Start Train")
 
