@@ -10,6 +10,7 @@ import pickle
 import os
 
 if __name__ == "__main__":
+
     # urls = get_urls()[:1_000]
     # urls = get_urls()[:20]
 
@@ -30,7 +31,7 @@ if __name__ == "__main__":
     with open(path + 'train_dataset.pkl', 'rb') as file:
         train_dataset = pickle.load(file)
 
-    batch_size = 4
+    batch_size = 16
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
@@ -41,4 +42,5 @@ if __name__ == "__main__":
     epochs = 10
     ckpt_path = os.path.dirname(os.path.dirname(__file__)) + '/models/best.pt'
     print("Start Train")
+
     train(model, train_dataloader, val_dataloader, optimizer, loss_fn, epochs, ckpt_path=ckpt_path, device=device, plotting=True)

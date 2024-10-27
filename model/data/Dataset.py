@@ -31,7 +31,6 @@ class PictureDataset(Dataset):
 
         gray = transform(image)
         image, gray = self.resize_transform(image), self.resize_transform(gray)
-
         # gray = gray.transpose(0, 2)
         # gray = gray.transpose(1, 2)
         # image = image.transpose(0, 2)
