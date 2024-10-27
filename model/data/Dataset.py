@@ -4,6 +4,7 @@ import polars as pl
 from data.transforms import transform
 from torch import Tensor, max
 from tqdm import tqdm
+from torchvision import transforms
 
 
 class PictureDataset(Dataset):
@@ -13,8 +14,13 @@ class PictureDataset(Dataset):
             checked.append(check_url(url))
 
         urls = urls.filter(checked)
-        # urls = urls.filter(url=pl.col("url").check_url())
         self.urls = urls
+
+        self.resize_transform = transforms.Compose([
+            transforms.ToPILImage(),
+            transforms.Resize((2048, 2048)),
+            transforms.ToTensor(),
+        ])
 
     def __len__(self):
         return len(self.urls)
@@ -24,12 +30,14 @@ class PictureDataset(Dataset):
         image = get_image(self.urls["url"][idx])
 
         gray = transform(image)
-        image, gray = Tensor(image), Tensor(gray)
+        print(image.shape, gray.shape)
+        image, gray = self.resize_transform(image), self.resize_transform(gray)
+        print(image.shape, gray.shape)
 
-        gray = gray.transpose(0, 2)
-        gray = gray.transpose(1, 2)
-        image = image.transpose(0, 2)
-        image = image.transpose(1, 2)
+        # gray = gray.transpose(0, 2)
+        # gray = gray.transpose(1, 2)
+        # image = image.transpose(0, 2)
+        # image = image.transpose(1, 2)
         image = image/max(image)
 
         gray = gray/max(gray)
