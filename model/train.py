@@ -31,7 +31,7 @@ if __name__ == "__main__":
     with open(path + 'train_dataset_40.pkl', 'rb') as file:
         train_dataset = pickle.load(file)
 
-    batch_size = 32
+    batch_size = 16
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 
