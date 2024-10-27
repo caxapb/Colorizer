@@ -22,6 +22,7 @@ def train_one_epoch(model, loader, optimizer, loss_fn, epoch_num=-1, device='cpu
 
     for i, batch in loop:
         colored, gray = batch
+        # print(colored.shape, gray.shape)
         colored = colored.to(device)
         gray = gray.to(device)
 
