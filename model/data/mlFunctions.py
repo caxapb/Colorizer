@@ -135,8 +135,8 @@ def train(
     losses_val = []
     for epoch in range(epochs):
         if plotting:
-            # loss_train = train_one_epoch(model, train_dataloader, optimizer, loss_fn, epoch_num=epoch,device=device, plotting=True)
-            # losses_train.append(loss_train)
+            loss_train = train_one_epoch(model, train_dataloader, optimizer, loss_fn, epoch_num=epoch,device=device, plotting=True)
+            losses_train.append(loss_train)
             best, loss_val = val_one_epoch(
                 model,
                 val_dataloader,
