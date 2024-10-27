@@ -26,12 +26,12 @@ if __name__ == "__main__":
     
 
     path = os.path.dirname(__file__) + '/custom_datasets/'
-    with open(path + 'val_dataset.pkl', 'rb') as file:
+    with open(path + 'val_dataset_40.pkl', 'rb') as file:
         val_dataset = pickle.load(file)
-    with open(path + 'train_dataset.pkl', 'rb') as file:
+    with open(path + 'train_dataset_40.pkl', 'rb') as file:
         train_dataset = pickle.load(file)
 
-    batch_size = 4
+    batch_size = 64
     train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=True)
     val_dataloader = DataLoader(val_dataset, batch_size=batch_size, shuffle=False)
 

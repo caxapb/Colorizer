@@ -18,6 +18,7 @@ def train_one_epoch(model, loader, optimizer, loss_fn, epoch_num=-1, device='cpu
     )
     model.train()
 
+    train_loss = 0
 
     for i, batch in loop:
         colored, gray = batch
@@ -32,6 +33,7 @@ def train_one_epoch(model, loader, optimizer, loss_fn, epoch_num=-1, device='cpu
 
         # loss calculation
         loss = loss_fn(outputs, colored)
+        train_loss += loss.item()
 
         # backward pass
         loss.backward()
@@ -45,7 +47,7 @@ def train_one_epoch(model, loader, optimizer, loss_fn, epoch_num=-1, device='cpu
         loop.set_postfix({"loss": float(loss)})
 
     if plotting:
-        return float(loss)
+        return float(train_loss) / (i+1)
     return
 
 
@@ -69,6 +71,8 @@ def val_one_epoch(
         leave=True,
     )
 
+    val_loss = 0
+
     with torch.no_grad():
         loss = float("inf")
         model.eval()  # evaluation mode
@@ -82,6 +86,7 @@ def val_one_epoch(
 
             # loss calculation
             loss = loss_fn(outputs, colored)
+            val_loss += loss.item()
 
             loop.set_postfix({"mse": float(loss)})
 
@@ -114,7 +119,7 @@ def val_one_epoch(
         filename = dir + '/visual_progress_epoch_' + str(epoch_num) + '.png'
         plt.savefig(filename)
 
-    return best_so_far, float(loss)
+    return best_so_far, float(val_loss) / (i+1)
 
 
 def train(

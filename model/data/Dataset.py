@@ -18,7 +18,7 @@ class PictureDataset(Dataset):
 
         self.resize_transform = transforms.Compose([
             transforms.ToPILImage(),
-            transforms.Resize((2048, 2048)),
+            transforms.Resize((256,256)),
             transforms.ToTensor(),
         ])
 
